@@ -10,4 +10,8 @@ public class JwtAuthResponse {
     public JwtAuthResponse() {
         this.accessToken = accessToken;
     }
+
 }
+
+
+

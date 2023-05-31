@@ -19,9 +19,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
 @Service
@@ -34,7 +33,8 @@ public class AuthServiceImpl implements AuthService {
     private JwtTokenProvider jwtTokenProvider;
     private ModelMapper modelMapper;
 
-    public AuthServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider, ModelMapper modelMapper) {
+
+    public AuthServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -42,6 +42,8 @@ public class AuthServiceImpl implements AuthService {
         this.jwtTokenProvider = jwtTokenProvider;
         this.modelMapper = modelMapper;
     }
+
+
 
     @Override
     public String login(LoginDto loginDto) {
@@ -75,6 +77,7 @@ public class AuthServiceImpl implements AuthService {
 
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName("USER").get();
+
         roles.add(userRole);
 
         user.setRoles(roles);
